@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+    <div class="ask_card">
+
+      <div class="ask_head" v-if="isAsker">
+        <img class="avatar" :src="consultDetail.consult_avatar"></img>
+        <div>来自{{consultDetail.consult_nickname}} 的咨询</div>
+        <img @click="showContent" class="right_icon" :class="hidden?'':'rotate'" src="/img/down_arrow.png"></img>
+      </div>
+    
+      <div class="ask_head"  v-else>
+        <img class="avatar" :src="consultDetail.answer_avatar"></img>
+        <div>我向答主发起的咨询</div>
+        <img @click="showContent" class="right_icon" :class="hidden?'':'rotate'" src="/img/down_arrow.png"></img>
+      </div>
+    
+      <div v-show="!hidden">
+        <div class="content">
+          {{consultDetail.content}}
+        </div>
+    
+        <div class="image_group" v-if="hasPic != 0">
+          <van-image v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)" ></van-image> 
+        </div>  
+      </div>
+    
+      <div class="status_box">
+        <div class="ask_status">{{consultDetail.left_text}}</div>
+        <div class="price">¥{{consultDetail.money}}</div>
+      </div>  
+    </div>
+    
+    
+    
+    <div class="answer_card">
+      <div class="answer_head">
+        <div v-if="isAsker">我的回答</div>
+        <div v-else>答主回答</div>
+      </div>
+    
+    
+      <div class="answer_text" :style="answerHidden?'':'-webkit-line-clamp: inherit'">
+        {{answerDetail.answer_content}}
+      </div>
+    
+      <div class="image_group" v-show="!answerHidden">
+        <van-image v-for="(item,index) in answerDetail.answer_pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkImage(index)"></van-image> 
+      </div>
+    
+      <div class="answer_foot">
+        <div class="answer_time">{{answerDetail.answer_time}}</div>
+        <img @click="showAnswerContent" class="right_icon" :class="answerHidden?'':'rotate'" src="/img/down_arrow.png"></img>
+      </div>
+    
+    </div>
+    
+    <div class="finsh_btn" v-if="!isAsker && consultDetail.status == 1" @click="openFinshPop">
+      完成咨询
+    </div>
+    
+    <van-divider></van-divider>
+    
+    
+    <div class="comm_count" v-if="!isAsker">您可以向答主追问{{consultDetail.consult_conversation_limit}}条信息</div>
+    
+    <div class="comm_count" v-else>咨询者可向您追问{{consultDetail.consult_conversation_limit}}条信息</div>
+    
+    
+    <div class="bubble_box">
+      <div class="other" :class="item.is_me?'me':''" v-for="item in replyList">
+        <div class="bubble">{{item.content}}</div>
+      </div>
+    </div>
+    
+    <div id="end"></div>
+    
+    <div class="fix_input">
+      <textarea type="text" class="text_input" placeholder="请输入内容" v-model="content"></textarea>
+      <div class="send_btn" @click="sendReply">发送</div>
+    </div>
+    
+    
+    
+    <van-popup v-model="show"  z-index="99999999999"
+     closeable @close="onClose" style="border-radius: 12px;width: 80%;">
+      <div class="pop_body">
+        <div class="pop_title">温馨提示</div>
+        <div class="pop_tips">完成咨询后如过追问次数未耗尽，仍可以进行追问咨询</div>
+        <div for="download" class="down_btn" @click="finsh">确认完成咨询</div>
+      </div>
+    </van-popup>
+    
+    
+
+
+  </div>
+</body>
+</html>

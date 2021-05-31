@@ -1,0 +1,91 @@
+html,body{
+  background-color: #ffffff;
+}
+
+#app{
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff;
+}
+
+.title{
+  width: 100%;
+  padding: 13px 0;
+  flex: 1;
+}
+
+.content{
+  min-height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 0;
+  border: none;
+  background-color: #ffffff;
+}
+
+.cell_padding{
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+.publish_btn{
+  width: 150px;
+  line-height: 44px;
+  height: 44px;
+  background: #3059EA;
+  border-radius: 22px;
+  color: #ffffff;  
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 150px;
+}
+
+
+.font_count{
+  color: #BBBBBB;
+  font-size: 14px;
+  text-align: right;
+}
+
+
+
+.pop_body{
+  width: 100%;
+  padding: 16px 20px 31px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #37393C;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.down_btn{
+  height: 40px;
+  padding: 0 30px;
+  background: #3059EA;
+  line-height: 40px;  
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 6px;  
+}
+
+.pop_title{
+  margin-bottom: 30px;
+  color: #37393C;
+}
+
+
+.pop_tips{
+  color: #37393C;
+  margin-bottom: 35px;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+
+<div class="star_main">
+  <image class="star_avatar" :src="consultDetail.answer_avatar"></image>
+
+  <div class="name">{{consultDetail.answer_nickname}} 的咨询服务</div>
+
+  <div class="star_text">{{startText}}</div>
+
+  <van-rate v-model="stars" size="30" void-color="#ffd21e" color="#ffd21e" @change="onChange" void-icon="star-o">
+      </van-rate>
+</div>
+
+
+<div class="text_box">
+  <textarea type="text" maxlength="60" v-model="content"  class="text_input" placeholder="写下你对他的评价吧"></textarea>
+  <div class="font_num">{{content.length}}/ 60</div>
+</div>
+
+
+<div class="submit" @click="giveStar">提交评价</div>
+
+
+
+
+  </div>
+</body>
+<html

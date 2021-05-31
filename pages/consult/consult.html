@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+  var package = { package: {$package|raw}};
+
+  wx.config({
+    debug: false, 
+    appId: package.package.appId, 
+    timestamp: package.package.timestamp, 
+    nonceStr: package.package.nonceStr, 
+    signature: package.package.signature,
+    jsApiList: [
+      "chooseWXPay"
+    ],
+  });
+
+  wx.checkJsApi({
+    jsApiList: ['chooseWXPay'],
+    success: function(res) {
+      console.log(res)
+    }
+  });   
+</script>
+<body>
+  <div id="app" v-cloak>
+
+
+
+      <div>
+      <textarea maxlength="300" auto-height v-model="content" placeholder="请详细描述你想咨询的问题，至少输入30字" class="content"></textarea>
+      <div class="font_count">{{content.length}}/300</div>
+      </div>
+      
+      
+      <div class="">
+        <van-uploader :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
+      </div>
+      
+      
+      <van-cell custom-class="cell_padding" :border="false" center title="匿名咨询" label="启用后将对答主匿名">
+        <van-switch size="24px" active-value="1" inactive-value="0"  v-model="checked"></van-switch>
+      </van-cell>
+      
+      
+      <div class="publish_btn" @click="publish">
+        确认提问
+      </div>
+      
+      
+      
+      
+      
+      <van-popup v-model="show" z-index="99999999999"
+       closeable @close="onClose" style="border-radius: 12px;width: 80%;">
+        <div class="pop_body">
+          <div class="pop_title">提问成功</div>
+          <div class="pop_tips">可在个人咨询主页查看资讯进度</div>
+          <div for="download" class="down_btn" @click="myConsult">查看我的咨询</div>
+        </div>
+      </van-popup>
+      
+      
+  </div>
+  </body>
+</html>

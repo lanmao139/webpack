@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "crypto-js": "^4.0.0",
     "vue": "^2.6.12",
     "vue-clipboard2": "^0.3.1"
   },

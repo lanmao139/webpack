@@ -40,10 +40,20 @@ module.exports = {
   mode: "production",
   entry: {
     "index": './pages/index/index.js',
+    "home": './pages/home/home.js',
+    "detail": './pages/detail/detail.js',
+    "answer": './pages/answer/answer.js',
+    "consult": './pages/consult/consult.js',
+    "communicate": './pages/communicate/communicate.js',
+    "star": './pages/star/star.js',
+    "refuse": './pages/refuse/refuse.js',
+    "setting": './pages/setting/setting.js',
+    "history": './pages/history/history.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //必须是绝对路径
-    filename: './[name]-bundle.js?[hash]',
+    filename: 'js/[name]-bundle.js?[hash]',
+    publicPath: '/static/' //部署地址
   },
   devServer: {
     port: '8080', //默认是8080
@@ -56,12 +66,12 @@ module.exports = {
     compress: true, //是否启用 gzip 压缩
     proxy: { // 代理接口
       '/request': {
-        target: 'http://api.qiandaozhuan.com', // 后端联调地址
+        target: 'https://api.xinxike.net', // 后端联调地址
         changeOrigin:true,
         pathRewrite: {
           '^/request':''
         }
-      },
+      },      
     }    
   },
   module: {
@@ -122,9 +132,64 @@ module.exports = {
       template: './pages/index/index.html', // 源html文件
       filename: './index.html', //打包后的文件名
       chunks: ['index'],
+      minify: false
     }),
+    new HtmlWebpackPlugin({
+      template: './pages/home/home.html', // 源html文件
+      filename: './home.html', //打包后的文件名
+      chunks: ['home'],
+      minify: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './pages/detail/detail.html',
+      filename: './detail.html', 
+      chunks: ['detail'],
+      minify: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './pages/answer/answer.html',
+      filename: './answer.html', 
+      chunks: ['answer'],
+      minify: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './pages/consult/consult.html',
+      filename: './consult.html', 
+      chunks: ['consult'],
+      minify: false
+    }),  
+    new HtmlWebpackPlugin({
+      template: './pages/communicate/communicate.html',
+      filename: './communicate.html', 
+      chunks: ['communicate'],
+      minify: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './pages/star/star.html',
+      filename: './star.html', 
+      chunks: ['star'],
+      minify: false
+    }),         
+    new HtmlWebpackPlugin({
+      template: './pages/refuse/refuse.html',
+      filename: './refuse.html', 
+      chunks: ['refuse'],
+      minify: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './pages/setting/setting.html',
+      filename: './setting.html', 
+      chunks: ['setting'],
+      minify: false
+    }),   
+    new HtmlWebpackPlugin({
+      template: './pages/history/history.html',
+      filename: './history.html', 
+      chunks: ['history'],
+      minify: false
+    }),          
     new miniCssExtractPlugin({
-      filename: './[name].css', //输出的css文件名，放置在dist目录下
+      filename: 'css/[name].css', //输出的css文件名，放置在dist目录下
     }),
     new CleanWebpackPlugin(),
   ],

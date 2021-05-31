@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+    <div class="reason"  v-for="(item,index) in refuseSelect" :data-i="index" @click="selectIndex(index)">
+      <div>{{item}}</div>
+      <img v-if="current == index" src="/img/select_icon_s.png" class="select">
+      <img v-else src="/img/select_icon.png" class="select" alt=""></img>
+    </div>
+
+
+
+    <div>
+    <textarea v-model="content" maxlength="300"  placeholder="请输入具体拒绝原因" class="content"></textarea>
+    <div class="font_count">{{content.length}}/300</div>
+    </div>
+
+
+    <div class="publish_btn" @click="submitRefuse">
+    确认拒绝咨询
+    </div>
+
+  </div>
+</body>
+<html

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+<div class="ask_card">
+  <div class="ask_head" v-if="isAsker">
+    <img class="avatar" :src="consultDetail.consult_avatar"></img>
+    <div>来自{{consultDetail.consult_nickname}} 的咨询</div>
+  </div>
+
+  <div class="ask_head" v-else>
+    <img class="avatar" :src="consultDetail.answer_avatar"></img>
+    <div>我向{{consultDetail.answer_nickname}} 的咨询</div>
+  </div>  
+
+
+  <div class="text_contain">
+    {{consultDetail.content}}   
+  </div>
+
+  <div class="image_group">
+    <van-image v-for="(item, index) in consultDetail.pic_url" fit="cover" width="65" height="65" :data-i="index" :src="item" @click="checkImage(index)"></van-image>
+  </div>
+  
+  <div class="status_box">
+    <div class="ask_status">{{consultDetail.left_text}}</div>
+    <div class="price">¥{{consultDetail.money}}</div>
+  </div>
+</div>
+
+<div class="answer_card" v-if="consultDetail.status == 2">
+  <div class="answer_head">
+    <div v-if="isAsker">我的回答</div>
+    <div v-else>答主回答</div>
+    <div class="answer_time">{{answer.answer_time}}</div>
+  </div>
+
+  <div class="answer_text">
+    {{answer.answer_content}}   
+  </div>
+
+  <div class="image_group">
+    <van-image v-for="(item,index) in answer.answer_pic_url" fit="cover" width="65" height="65" :src="item" data-i="index" @click="checkAnserImage(index)" ></van-image> 
+  </div>
+</div>
+
+
+
+<div v-if="isAsker">
+  <div class="answer_tips" v-if="consultDetail.status == 0">您还没有回答咨询者的问题，请尽快答复</div>
+
+  <div class="answer_tips red_tips" v-else-if="consultDetail.status == 3">您已拒绝回答{{consultDetail.consult_nickname}}的问题，咨询已关闭</div>
+
+  <div class="answer_tips red_tips" v-else-if="consultDetail.status == 3 && consultDetail.is_automatic_refuse == 1">您没有及时回答{{consultDetail.consult_nickname}} 的问题，咨询已失效</div>
+
+  <div class="btn_group" v-if="consultDetail.status == 0">
+    <div class="answer_btn" @click="refuse">拒绝回答</div>
+    <div class="answer_btn answer_btn_yes"  @click="goAnswer">立即回答</div>
+  </div> 
+
+
+   <div v-if="consultDetail.status == 2">
+    <div class="star_title">咨询者给您的评价</div>
+    <van-rate v-model="consultDetail.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+        </van-rate>
+    <div class="comment">{{consultDetail.comment}}</div>
+  </div>
+
+</div>
+
+<div v-else>
+  <div class="answer_tips" v-if="consultDetail.status == 0">答主还未回答，请耐心等待</div>
+
+ <div class="answer_tips red_tips" v-else-if="consultDetail.status == 3">答主已拒绝·咨询失效</div>
+
+    <div class="answer_tips red_tips" v-else-if="consultDetail.status == 3 && consultDetail.is_automatic_refuse == 1">答主没有及时回答您的问题
+我们将全额退款至您的付款平台</div>
+
+
+  <div v-if="consultDetail.status == 2">
+
+    <div class="continue_btn" @click="goContinue">追问咨询</div>
+
+    <div>您对答主的评价</div>
+    <van-rate v-model="consultDetail.star" :size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+        </van-rate>
+    <div>{{consultDetail.comment}}</div>
+  </div>
+
+</div>
+
+<div class="refuse_reason" v-if="consultDetail.status == 3 && consultDetail.refuse_reason != ''">
+  拒绝理由：{{consultDetail.refuse_reason}}
+  </div>
+
+
+
+<div v-if="consultDetail.status < 2 && isAsker">
+  <van-divider contentPosition="center">温馨提示</van-divider>
+  <div class="warm_text">{{consultDetail.answer_tips}}</div>
+</div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+<van-list
+    v-model="loading"
+    :finished="finished"
+    @load="onLoad">
+
+  <div class="consult_card" v-for="item in list" :data-id="item.consult_id" @click="consultDetail(item.consult_id)">
+    <div class="consult_head">
+      <image class="consult_avatar" :src="item.answer_avatar"></image>
+      <div>我向{{item.answer_nickname}}发起 的咨询</div>
+      <img src="/img/message_right.png" class="right_arrow"></img>
+    </div>
+  
+    <div class="consult_content">
+      {{item.content}}  
+    </div>
+  
+  
+    <div class="consult_info">
+      <div class="consult_time" v-if="item.status == 2">{{item.finish_time}} 完成咨询</div>
+  
+      <div class="consult_time refuse" v-else>{{item.left_text}}</div>    
+      <div class="consult_price">¥{{item.money}}</div>
+    </div>
+  
+    <div class="consult_foot" v-if="item.status == 2">
+      <van-rate v-model="item.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+        </van-rate>  
+        <div>{{item.comment}}</div>
+    </div>
+  
+    <div class="consult_foot" v-else>
+        <div>拒绝理由：{{item.is_automatic_refuse?'咨询已过期':item.refuse_reason}}</div>
+    </div>
+  </div>
+  
+  
+
+</van-list>
+
+
+<van-empty v-if="empty" description="暂无咨询内容"></van-empty>
+
+
+  </div>
+</body>
+<html

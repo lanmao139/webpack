@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+    <img class="answer_avatar" :src="responder.avatar_url"></img>
+
+    <div class="name">{{responder.nickname}} 的咨询主页</div>
+
+
+    <div class="answer_data">
+
+      <div class="count">累计{{responder.consult_finish_count}}次咨询</div>
+      <div>{{responder.consult_star}}</div>
+
+      <van-rate readonly :value="responder.consult_star" :size="20" void-color="#ffd21e" color="#ffd21e" void-icon="star-o">
+        </van-rate>
+
+    </div>
+
+
+    <div class="brief">{{consult_config.consult_brief}}</div>
+
+
+    <div class="history" @click="history">
+      <div>您的历史咨询</div>
+      <img class="arrow_icon" src="/img/arrow.png"></img>
+    </div>
+
+
+
+    <div class="ask_btn" @click="createConsult">
+      <img class="ask_icon" src="/img/question_icon.png"></img>
+      <div>发起提问</div>
+    </div>
+
+  </div>
+</body>
+</html>

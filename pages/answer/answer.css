@@ -1,0 +1,156 @@
+#app{
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: #F4F4F4;
+}
+
+.title_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #F4F4F4;
+}
+
+.title{
+  width: 100%;
+  padding: 13px 0;
+  flex: 1;
+}
+
+.content{
+  min-height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: none;
+  background-color: #F4F4F4;
+}
+
+.cell_padding{
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+.publish_btn{
+  width: 150px;
+  line-height: 44px;
+  height: 44px;
+  background: #3059EA;
+  border-radius: 22px;
+  color: #ffffff;  
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 150px;
+}
+
+
+.ask_card{
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px 18px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin: 20px auto;
+}
+
+.ask_head{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.right_icon{
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  transition: .3s;  
+}
+
+.status_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.ask_status{
+  background: #F8F8F8;
+  border-radius: 11px;
+  font-size: 12px;
+  color: #8B8B8B; 
+  padding: 2px 10px;
+}
+
+.price{
+  color: #3059EA;
+  font-size: 16px;
+}
+
+
+.font_count{
+  color: #BBBBBB;
+  font-size: 14px;
+  text-align: right;
+}
+
+
+
+.pop_body{
+  width: 100%;
+  padding: 16px 20px 31px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #37393C;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.down_btn{
+  height: 40px;
+  padding: 0 30px;
+  background: #3059EA;
+  line-height: 40px;  
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 6px;  
+}
+
+.pop_title{
+  margin-bottom: 30px;
+  color: #37393C;
+}
+
+
+.pop_tips{
+  color: #37393C;
+  margin-bottom: 35px;
+}
+
+
+.rotate{
+  transform: rotate(180deg);
+}
+
+.consult_content{
+  color: #343434;
+  font-size: 14px;
+  margin-bottom: 10px;  
+}
+
+.image_group{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
+}

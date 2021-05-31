@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+<div class="home_head">
+  <div class="info_box">
+    <img class="home_avatar" :src="consultInfo.avatar_url"></img>
+    <div>
+      <div class="name">{{consultInfo.nickname}}</div>
+      <div class="consult_counts">累计{{consultInfo.consult_finish_count}}次回答</div>
+    </div>
+    <img @click="setting" class="setting_icon" src="/img/me_setup_icon.png"></img>
+  </div>
+
+  <div class="num_box">
+
+    <div class="num_item">
+      <div class="num_price">{{consultInfo.consult_finish_sum}}</div>
+      <div>累计收入</div>
+    </div>
+
+    <div class="num_item">
+      <div class="num_price">{{consultInfo.consult_star}}</div>
+      <div>赞赏评分</div>
+    </div>  
+
+  </div>
+
+</div>
+
+
+
+<div class="nav">
+  <div class="nav_item" data-type="1" @click="setType(1)">
+    <div>收到的咨询</div>
+    <div class="nav_line" :class="type==1?'nav_active':''"></div>
+  </div>
+
+  <div class="nav_item" data-type="2" @click="setType(2)">
+    <div>发起的咨询</div>
+    <div class="nav_line" :class="type==2?'nav_active':''"></div>
+  </div>  
+</div>
+
+
+
+<div class="btn_group">
+  <div class="filter_btn" :class="navType==0?'filter_avtive':''" data-navtype="0" @click="setNavType(0)">进行中({{navData.consult_processing}})</div>
+  <div class="filter_btn" :class="navType==1?'filter_avtive':''" data-navtype="1" @click="setNavType(1)">待应答({{navData.consult_pending}})</div>
+  <div class="filter_btn" :class="navType==2?'filter_avtive':''" data-navtype="2" @click="setNavType(2)">已完成({{navData.consult_finish}})</div>
+  <div class="filter_btn" :class="navType==3?'filter_avtive':''" data-navtype="3" @click="setNavType(3)">其他({{navData.consult_other}})</div>
+</div>
+
+
+<van-list
+  v-model="loading"
+  :finished="finished"
+  @load="onLoad"
+>
+
+  <div class="consult_list">
+    <div class="consult_card" v-for="item in list" :data-id="item.consult_id"  @click="consultDetail(item.consult_id)">
+      <div class="consult_head">
+        <div class="avatar_box">
+          <img v-if="type==2" :src="item.answer_avatar" class="consult_avatar"> </img>
+          <img v-else :src="item.consult_avatar" class="consult_avatar"> </img>
+
+          <div class="dot" v-if="item.consult_has_news"></div>
+        </div>
+
+
+        <div class="name" v-if="type==2">我向{{item.answer_nickname}} 的咨询</div>
+
+        <div class="name" v-else>来自{{item.consult_nickname}} 的咨询</div>
+      </div>
+
+      <div class="consult_text">
+        {{item.content}}
+      </div>
+
+
+      <div class="consult_info">
+        <div class="consult_status">{{item.left_text}}</div>
+        <div v-if="item.consult_has_news">有消息更新</div>
+      </div>
+
+
+      <block v-if="item.status == 2 && item.is_give_star == 1">
+        <van-divider customStyle="margin: 10px 0"></van-divider>
+
+        <div class="consult_foot">
+          <van-rate :value="item.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+            </van-rate>
+            <div class="consult_comment">{{item.comment}}</div>
+        </div>       
+      </block>     
+    </div>
+  </div>
+
+</van-list>
+
+<van-empty v-if="empty" description="暂无咨询内容"></van-empty>
+
+
+
+  </div>
+</body>
+</html>

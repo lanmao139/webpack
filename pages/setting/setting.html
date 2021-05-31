@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+<div class="cell_card">
+  <div class="cell_main">
+    <div>是否开启咨询</div>
+    <div class="cell_right">
+      <van-switch size="24px" :active-value="1" :inactive-value="0" v-model="consult_status"></van-switch>
+    </div>
+  </div>
+</div>
+
+<div class="cell_card">
+  <div class="cell_main">
+    <div>付费咨询单价</div>
+    <label for="price" class="cell_right price_box">
+      <div>￥</div>
+      <input v-model="consult_price" id="price" class="price_input" type="digit"></input>
+    </label>  
+  </div>
+  <div class="desc">*在这里设置想你发起咨询的单价，价格区间是¥1-¥2000</div>
+</div>
+
+
+
+<div class="cell_card">
+  <div class="cell_main">
+    <div>追问次数限制</div>
+    <div class="cell_right count_box">
+      <input v-model="consult_conversation_limit"  class="num_input" type="number"></input>
+    </div>  
+  </div>
+  <div class="desc">*在这里设置追问的次数，追问1-20次</div>
+</div>
+
+
+<div class="cell_card">
+  <div>
+    <div>我的咨询简介</div>
+    <div>
+      <textarea v-model="consult_brief" placeholder="介绍你擅长的，能解答咨询的领域，便于大家更准确的向你咨询" class="brief"></textarea>
+    </div>
+  </div>
+</div>
+
+
+<div class="save_btn" @click="save">
+  保存设置
+</div>    
+
+  </div>
+</body>
+<html

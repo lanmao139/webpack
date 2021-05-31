@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>信息客</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/index.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+<script>
+  var uid = {uid: "{$uid}"};
+  var token = {token: "{$token}"};  
+</script>
+<body>
+  <div id="app" v-cloak>
+
+    <div class="ask_card">
+      <div class="ask_head">
+        <img class="avatar" :src="consultDetail.consult_avatar"></img>
+        <div>来自{{consultDetail.consult_nickname}} 的咨询</div>
+        <img @click="showContent" class="right_icon" :class="hidden?'':'rotate'" src="/img/down_arrow.png"></img>
+      </div>
+    
+      <div v-show="!hidden">
+        <div class="consult_content">
+          {{consultDetail.content}}
+        </div>
+    
+        <div class="image_group" v-if="hasPic != 0">
+          <van-image v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)"></van-image>
+        </div>  
+      </div>
+    
+      <div class="status_box">
+        <div class="ask_status">{{consultDetail.left_text}}</div>
+        <div class="price">¥{{consultDetail.money}}</div>
+      </div>  
+    </div>
+    
+    
+    <block>
+    
+    <div>
+    <textarea maxlength="300" auto-height v-model="content" placeholder="请详细回答咨询的问题，至少输入30字" class="content"></textarea>
+    <div class="font_count">{{content.length}}/300</div>
+    </div>
+    
+    
+    <div class="">
+    <van-uploader :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
+    </div>
+    
+    
+    <div class="publish_btn" @click="publish">
+    确认回答
+    </div>
+    
+    
+    </block>
+    
+    
+    <van-popup  v-model="show"  z-index="99999999999"
+     closeable @close="onClose" style="border-radius: 12px;width: 80%;">
+      <div class="pop_body">
+        <div class="pop_title">回答发布成功</div>
+        <div class="pop_tips">咨询将在48小时后自动结束，或者又咨询者主动结束咨询</div>
+        <div for="download" class="down_btn" @click="back">好的</div>
+      </div>
+    </van-popup>
+    
+ 
+  </div>
+</body>
+</html>
