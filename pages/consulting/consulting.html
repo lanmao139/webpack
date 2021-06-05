@@ -36,21 +36,9 @@
     </div>
   
   
-    <div class="consult_info">
-      <div class="consult_time" v-if="item.status == 2">{{item.finish_time}} 完成咨询</div>
-  
-      <div class="consult_time refuse" v-else>{{item.left_text}}</div>    
+    <div class="consult_info">  
+      <div class="consult_time">正在咨询</div>    
       <div class="consult_price">¥{{item.money}}</div>
-    </div>
-  
-    <div class="consult_foot" v-if="item.status == 2">
-      <van-rate v-model="item.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
-        </van-rate>  
-        <div>{{item.comment}}</div>
-    </div>
-  
-    <div class="consult_foot" v-else>
-        <div>拒绝理由：{{item.is_automatic_refuse?'咨询已过期':item.refuse_reason}}</div>
     </div>
   </div>
   

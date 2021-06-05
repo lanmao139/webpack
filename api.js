@@ -22,19 +22,31 @@ const domain =
  * @returns
  */
 function fetch(url, method = "POST", params) {
+
   let _data = {
     token: token.token,
     uid: uid.uid,
-    ...params
+    // token: "660a1fe302a3f963c03bd29bc31ecad9",
+    // uid: "10011",    
+    appversion: '1.0.4',
+    appname: 'xinxike',
+    systype: 'xcx',
+    time: parseInt(new Date().getTime()/1000) + '',
+    store: 'wechat-xcx',
+    ...params,
   }
-  let data = qs.stringify(_data);
+
+  let sign = createSign(_data, url)
   return new Promise((resolve, reject) => {
     axios({
       method: method,
       url: url,
-      data: data,
+      data: {
+        ..._data,
+        sign: sign
+      },
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json; charset=utf-8",
       },
     })
       .then((response) => {
@@ -61,7 +73,10 @@ function fetch2(url, method = "POST", params) {
     axios({
       method: method,
       url: url,
-      data: JSON.stringify(params),
+      data: data,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },      
     })
       .then((response) => {
         resolve(response.data);
@@ -89,6 +104,23 @@ export const GetRequest = function () {
 };
 
 
+export const createSign = function(params, url) {
+  let time_step = parseInt(new Date().getTime()/1000) + ''
+  time_step = time_step.substring(0, time_step.length - 2) + "00"
+  let valStr = []
+  Object.keys(params).forEach((e)=>{
+    valStr.push(e)
+  })
+
+  let str = ""
+  valStr.sort().forEach((e)=> {
+    console.log(params[e])
+    str += params[e]
+  })
+  const oristr = "KuXknOzM*FR4Mv30" + str + url.replace(domain, "").trim() + time_step
+  return window.md5(oristr).split("").reverse().join("")
+};
+
 export const upload = function(formData) {
   return new Promise((resolve, reject) => {
       axios({
@@ -113,7 +145,7 @@ export const upload = function(formData) {
 /**
  * 获取阿里云token
  */
- export const ossToken = (params) => fetch(`https://service-api.xinxike.net/api/oss/token`,"POST", params);
+ export const ossToken = (params) => fetch2(`https://service-api.xinxike.net/api/oss/token`,"POST", params);
 
 
 /**
@@ -219,4 +251,12 @@ export const upload = function(formData) {
   * 保存设置
   */
  export const editConsultConfig = (params) => fetch(`${domain}/api/consult/editConsultConfig`,"POST", params);
+ 
+
+
+
+  /**
+  * 正在咨询
+  */
+   export const myconsultProcessing = (params) => fetch(`${domain}/api/consult/myconsultProcessing`,"POST", params);
  

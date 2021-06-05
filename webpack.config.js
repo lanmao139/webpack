@@ -49,14 +49,17 @@ module.exports = {
     "refuse": './pages/refuse/refuse.js',
     "setting": './pages/setting/setting.js',
     "history": './pages/history/history.js',
+    "consulting": './pages/consulting/consulting.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //必须是绝对路径
     filename: 'js/[name]-bundle.js?[hash]',
-    publicPath: '/static/' //部署地址
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/static/'
+    : '/',
   },
   devServer: {
-    port: '8080', //默认是8080
+    port: '8090', //默认是8080
     contentBase: path.join(__dirname, "dist"),
     quiet: false, //默认不启用
     inline: true, //默认开启 inline 模式，如果设置为false,开启 iframe 模式
@@ -187,7 +190,14 @@ module.exports = {
       filename: './history.html', 
       chunks: ['history'],
       minify: false
-    }),          
+    }),       
+
+    new HtmlWebpackPlugin({
+      template: './pages/consulting/consulting.html',
+      filename: './consulting.html', 
+      chunks: ['consulting'],
+      minify: false
+    }),  
     new miniCssExtractPlugin({
       filename: 'css/[name].css', //输出的css文件名，放置在dist目录下
     }),

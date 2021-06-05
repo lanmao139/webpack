@@ -1,0 +1,81 @@
+/* pages/consults/history/history.wxss */
+#app{
+  padding: 18px;
+  box-sizing: border-box;
+  background-color: #F7F7F7;
+}
+
+.consult_card{
+  width: 100%;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.consult_head{
+  display: flex;
+  align-items: center;
+}
+
+.consult_avatar{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.right_arrow{
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+}
+
+
+.consult_content{
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  color: #8B8B8B;
+  font-size: 16px;
+  line-height: 32px;
+  min-height: 65px;
+  margin: 16px 0;
+}
+
+
+.consult_info{
+  /* padding-bottom: 16px;
+  border-bottom: 1px solid #F6F6F6;   */
+  display: flex;
+  align-items: center;
+}
+
+.consult_time{
+  background-color: #F8F8F8;
+  border-radius: 11px;  
+  padding: 3px 14px;
+  color: #8B8B8B;
+  font-size: 12px;
+}
+
+
+.consult_price{
+  color: #3059EA;
+  margin-left: auto;
+  font-size: 16px;
+}
+
+.consult_foot{
+  margin-top: 12px;
+  color: #6F6F6F;
+  font-size: 16px;
+}
+
+.refuse{
+  color:red;
+}

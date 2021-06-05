@@ -11,6 +11,7 @@
   color: #000000;
   font-size: 18px;
   margin-bottom: 18px;
+  font-weight: bold;
 }
 
 .answer_data{
@@ -65,5 +66,26 @@
   border-radius: 27px;
   color: #ffffff;  
   margin: 0px auto;
-  margin-top: 150px;  
+  margin-top: 20px;  
+}
+
+
+
+.asking{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E9EEFE;
+  color: #3059EA;
+  font-size: 12px;
+  border-radius: 30px;
+  width: 200px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.btn_icon{
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
 }

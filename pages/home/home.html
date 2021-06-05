@@ -9,6 +9,8 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vant@2.12.2/lib/vant.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+
 <script>
   var uid = {uid: "{$uid}"};
   var token = {token: "{$token}"};  
@@ -19,14 +21,16 @@
 <div class="home_head">
   <div class="info_box">
     <img class="home_avatar" :src="consultInfo.avatar_url"></img>
-    <div>
+    <div class="name">{{consultInfo.nickname}} 发起的咨询</div>
+
+    <!-- <div>
       <div class="name">{{consultInfo.nickname}}</div>
       <div class="consult_counts">累计{{consultInfo.consult_finish_count}}次回答</div>
-    </div>
-    <img @click="setting" class="setting_icon" src="/img/me_setup_icon.png"></img>
+    </div> -->
+    <!-- <img @click="setting" class="setting_icon" src="/img/me_setup_icon.png"></img> -->
   </div>
 
-  <div class="num_box">
+  <!-- <div class="num_box">
 
     <div class="num_item">
       <div class="num_price">{{consultInfo.consult_finish_sum}}</div>
@@ -38,23 +42,23 @@
       <div>赞赏评分</div>
     </div>  
 
-  </div>
+  </div> -->
 
 </div>
 
 
 
-<div class="nav">
-  <div class="nav_item" data-type="1" @click="setType(1)">
+<!--<div class="nav">
+   <div class="nav_item" data-type="1" @click="setType(1)">
     <div>收到的咨询</div>
     <div class="nav_line" :class="type==1?'nav_active':''"></div>
-  </div>
+  </div> -->
 
-  <div class="nav_item" data-type="2" @click="setType(2)">
+  <!-- <div class="nav_item" data-type="2" @click="setType(2)">
     <div>发起的咨询</div>
     <div class="nav_line" :class="type==2?'nav_active':''"></div>
-  </div>  
-</div>
+  </div>   
+</div>-->
 
 
 

@@ -1,6 +1,6 @@
 import * as api from '../../api'
 import'../../main.css'
-import'./history.css'
+import'./consulting.css'
 
 
 var app = new Vue({
@@ -21,11 +21,11 @@ var app = new Vue({
   methods: {
     onLoad(){
       console.log("adsd")
-      this.myconsultHistory()
+      this.myconsulting()
     },
-    myconsultHistory(){
+    myconsulting(){
       this.loading = true
-      api.myconsultHistory({
+      api.myconsultProcessing({
         page: this.page,
         answer_uid: this.answer_uid,
       }).then((res)=>{
@@ -46,7 +46,7 @@ var app = new Vue({
     
   
     consultDetail(id){
-      window.location.href = "/mppage/web/detail?consult_id=" + id
+      window.location.href = "/mppage/web/communicate?consult_id=" + id
     }    
   }
 })

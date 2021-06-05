@@ -9,12 +9,17 @@ var app = new Vue({
     return {
       answer_uid: "10012",
       responder:{},
-      consult_config:{}
+      consult_config:{},
+      isMyself: false
     }
   },
   created(){
     this.answer_uid = api.GetRequest().answer_uid
     this.getRespondersConsultInfo()
+
+    if(this.answer_uid == uid.uid) {
+      this.isMyself = true
+    }
   },
   methods: {
     getRespondersConsultInfo(){
@@ -30,13 +35,22 @@ var app = new Vue({
   
     createConsult(){
       const id = this.answer_uid
-      window.location.href = "/mppage/web/consult?answer_uid=" + id
+      if(this.consult_config.consult_status == 1) {
+        window.location.href = "/mppage/web/consult?answer_uid=" + id
+      } else {
+        vant.Toast("当前用户已关闭咨询")
+      }
     },
   
   
   
     history() {
       window.location.href = "/mppage/web/history?answer_uid=" + this.answer_uid
-    }    
+    },
+
+
+    asking(){
+      window.location.href = "/mppage/web/consulting?answer_uid=" + this.answer_uid
+    }
   }
 })

@@ -7,7 +7,7 @@ var app = new Vue({
   el: '#app',
   data() {
     return {
-      type: 1,
+      type: 2,
       navData: {},
       navType: 0,
       list:[],

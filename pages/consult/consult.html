@@ -47,7 +47,7 @@
       
       
       <div class="">
-        <van-uploader :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
+        <van-uploader accept="image/*" capture="camera" max-count="4" :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
       </div>
       
       
@@ -68,7 +68,9 @@
        closeable @close="onClose" style="border-radius: 12px;width: 80%;">
         <div class="pop_body">
           <div class="pop_title">提问成功</div>
-          <div class="pop_tips">可在个人咨询主页查看资讯进度</div>
+          <div class="pop_tips">*关注公众号及时获取答主回复</div>
+          <img class="pop_qr" src="/img/qr.jpg" alt="">
+          <div class="pop_text">长按识别二维码关注公众号</div>
           <div for="download" class="down_btn" @click="myConsult">查看我的咨询</div>
         </div>
       </van-popup>

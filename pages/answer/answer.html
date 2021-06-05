@@ -50,7 +50,7 @@
     
     
     <div class="">
-    <van-uploader :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
+    <van-uploader accept="image/*" capture="camera" max-count="4" :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
     </div>
     
     
