@@ -62,7 +62,18 @@ var app = new Vue({
       window.location.href = "/mppage/web/communicate?consult_id=" + this.consult_id
     }, 
 
+
+    navigate(){
+      if(this.consultDetail.status == 2 || this.consultDetail.status == 1) {
+        window.location.href = "/mppage/web/communicate?consult_id=" + this.consult_id
+      }
+    },
+
+    stars(){
+      window.location.href = "/mppage/web/star?consult_id=" + this.consult_id
+    }
+
   }
 
 
-})
+})  

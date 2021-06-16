@@ -45,8 +45,12 @@ var app = new Vue({
     
     
   
-    consultDetail(id){
-      window.location.href = "/mppage/web/communicate?consult_id=" + id
+    consultDetail(item){
+      if(item.status == 1) {
+        window.location.href = "/mppage/web/communicate?consult_id=" + item.consult_id
+      } else {
+        window.location.href = "/mppage/web/detail?consult_id=" + item.consult_id
+      }
     }    
   }
 })

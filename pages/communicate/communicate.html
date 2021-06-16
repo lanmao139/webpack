@@ -37,7 +37,7 @@
         </div>
     
         <div class="image_group" v-if="hasPic != 0">
-          <van-image v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)" ></van-image> 
+          <van-image radius="4" style="margin-right: 8px" v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)" ></van-image> 
         </div>  
       </div>
     
@@ -61,7 +61,7 @@
       </div>
     
       <div class="image_group" v-show="!answerHidden">
-        <van-image v-for="(item,index) in answerDetail.answer_pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkImage(index)"></van-image> 
+        <van-image radius="4" style="margin-right: 8px" v-for="(item,index) in answerDetail.answer_pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkImage(index)"></van-image> 
       </div>
     
       <div class="answer_foot">

@@ -17,23 +17,65 @@
 </script>
 <body>
   <div id="app" v-cloak>
-    <img class="answer_avatar" :src="responder.avatar_url"></img>
 
-    <div class="name">{{responder.nickname}} 的咨询主页</div>
+    <div class="answer_card">
+      <div class="answer_head">
+        <img class="answer_avatar" :src="responder.avatar_url"></img>
+        <div class="answer_info">
+          <div class="name">{{responder.nickname}}</div>
+          <div class="answer_point">
+            <van-rate readonly :value="responder.consult_star" :size="16" void-color="#ffd21e" color="#ffd21e" void-icon="star-o">
+            </van-rate>
+            <div class="star">{{responder.consult_star}}</div>
+          </div>
+        </div>
+
+        <div class="answer_price">
+          <div class="price">￥{{consult_config.consult_price}}</div>
+          <div>咨询费用</div>
+        </div>
+      </div>
 
 
-    <div class="answer_data">
 
-      <div class="count">累计{{responder.consult_finish_count}}次咨询</div>
-      <div>{{responder.consult_star}}</div>
+      <div class="tag_group" v-if="hasTags">
+        <div class="tag" v-for="item in responder.tags">{{item.tag_name}}</div>
+      </div>
 
-      <van-rate readonly :value="responder.consult_star" :size="20" void-color="#ffd21e" color="#ffd21e" void-icon="star-o">
-        </van-rate>
 
+      <div>
+        <div class="card_label">答主简介</div>
+        <div class="brief">{{consult_config.consult_brief}}</div>
+      </div>
+            
     </div>
 
 
-    <div class="brief">{{consult_config.consult_brief}}</div>
+
+
+    <!-- <div class="answer_data">
+
+      <div class="count">累计{{responder.consult_finish_count}}次咨询</div>
+
+
+    </div> -->
+
+    <div class="step_box">
+
+      <div class="step">
+        <img class="step_img" src="/img/service_img.png" alt="">
+        <div @click="stepText(1)"  :class="step == 1?'yellow':''">1.编辑咨询内容</div>
+        <img class="next_icon" src="/img/btn_back.png" alt="">
+        <div @click="stepText(2)"  :class="step == 2?'yellow':''">2.确认付费咨询</div>
+        <img class="next_icon" src="/img/btn_back.png" alt="">
+        <div @click="stepText(3)" :class="step == 3?'yellow':''" style="margin-right: 5px;">3.答后交流</div>
+      </div>
+      <div class="step_desc">
+        <div class="step_li" v-for="item in steplist">{{item}}</div>
+      </div>
+
+    </div>
+
 
 
     <div class="history" @click="history" v-if="!isMyself">
@@ -42,16 +84,21 @@
     </div>
 
 
-    <div style="margin-top: 120px;  "> 
-      <div class="asking" v-if="responder.consult_processing_count>0" @click="asking">
+    <div style="margin-top: 60px;margin-bottom: 30px;">
+      <div class="asking" v-if="responder.consult_processing_count > 0" @click="asking">
         <div>当前有正在咨询的问题</div>
         <img class="btn_icon" src="/img/arrow_blue.png"></img>
       </div>
       
       
-      <div class="ask_btn" @click="createConsult" v-if="!isMyself">
+      <div class="ask_btn" @click="createConsult" v-if="!isMyself && module_status == 1">
         <img class="ask_icon" src="/img/question_icon.png"></img>
         <div>发起提问</div>
+      </div>
+
+
+      <div class="ask_btn btn_disable" v-if="!isMyself && module_status == 0">
+        咨询服务已关闭
       </div>
     </div>
 

@@ -14,7 +14,7 @@
 
 <script>
   var uid = {uid: "{$uid}"};
-  var token = {token: "{$token}"};  
+  var token = {token: "{$token}"};
 </script>
 <body>
   <div id="app" v-cloak>
@@ -24,7 +24,7 @@
     :finished="finished"
     @load="onLoad">
 
-  <div class="consult_card" v-for="item in list" :data-id="item.consult_id" @click="consultDetail(item.consult_id)">
+  <div class="consult_card" v-for="item in list" :data-id="item.consult_id" @click="consultDetail(item)">
     <div class="consult_head">
       <image class="consult_avatar" :src="item.answer_avatar"></image>
       <div>我向{{item.answer_nickname}}发起 的咨询</div>
@@ -37,7 +37,8 @@
   
   
     <div class="consult_info">  
-      <div class="consult_time">正在咨询</div>    
+      <div class="consult_time" v-if="item.status == 0">待回答</div>    
+      <div class="consult_time" v-else>正在咨询</div>
       <div class="consult_price">¥{{item.money}}</div>
     </div>
   </div>

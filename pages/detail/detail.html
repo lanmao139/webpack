@@ -18,7 +18,7 @@
 <body>
   <div id="app" v-cloak>
 
-<div class="ask_card">
+<div class="ask_card" @click="navigate">
   <div class="ask_head" v-if="isAsker">
     <img class="avatar" :src="consultDetail.consult_avatar"></img>
     <div>来自{{consultDetail.consult_nickname}} 的咨询</div>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="image_group">
-    <van-image v-for="(item, index) in consultDetail.pic_url" fit="cover" width="65" height="65" :data-i="index" :src="item" @click="checkImage(index)"></van-image>
+    <van-image radius="4" style="margin-right: 8px" v-for="(item, index) in consultDetail.pic_url" fit="cover" width="65" height="65" :data-i="index" :src="item" @click="checkImage(index)"></van-image>
   </div>
   
   <div class="status_box">
@@ -56,7 +56,7 @@
   </div>
 
   <div class="image_group">
-    <van-image v-for="(item,index) in answer.answer_pic_url" fit="cover" width="65" height="65" :src="item" data-i="index" @click="checkAnserImage(index)" ></van-image> 
+    <van-image radius="4" style="margin-right: 8px" v-for="(item,index) in answer.answer_pic_url" fit="cover" width="65" height="65" :src="item" data-i="index" @click="checkAnserImage(index)" ></van-image> 
   </div>
 </div>
 
@@ -97,10 +97,18 @@
 
     <div class="continue_btn" @click="goContinue">追问咨询</div>
 
-    <div>您对答主的评价</div>
-    <van-rate v-model="consultDetail.star" :size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
-        </van-rate>
-    <div>{{consultDetail.comment}}</div>
+    <div v-if="consultDetail.is_give_star == 1">
+      <div>您对答主的评价</div>
+      <van-rate v-model="consultDetail.star" :size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+          </van-rate>
+      <div>{{consultDetail.comment}}</div>
+    </div>
+
+    <div v-else class="noStar" @click="stars">
+      <div>您还没有评价，快去给答主评价吧！</div>
+      <img class="arrow_right" src="../../img/arrow.png" alt="">
+    </div>
+
   </div>
 
 </div>

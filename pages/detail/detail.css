@@ -32,7 +32,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   margin: 16px 0;
 }
 
@@ -163,7 +162,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   margin: 16px 0;
 }
 
@@ -189,4 +187,16 @@
   color: #ffffff;  
   text-align: center;
   margin: 20px auto;
+}
+
+.noStar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #BABABA;
+  font-size: 14px;
+}
+
+.arrow_right{
+  width: 16px;
 }

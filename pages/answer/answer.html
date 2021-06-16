@@ -30,7 +30,7 @@
         </div>
     
         <div class="image_group" v-if="hasPic != 0">
-          <van-image v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)"></van-image>
+          <van-image radius="4" style="margin-right: 8px" v-for="(item,index) in consultDetail.pic_url" fit="cover" width="65" height="65" :src="item" :data-i="index" @click="checkConsultImage(index)"></van-image>
         </div>  
       </div>
     
@@ -44,13 +44,13 @@
     <block>
     
     <div>
-    <textarea maxlength="300" auto-height v-model="content" placeholder="请详细回答咨询的问题，至少输入30字" class="content"></textarea>
+    <textarea maxlength="300" auto-height v-model="content" placeholder="请详细回答咨询的问题" class="content"></textarea>
     <div class="font_count">{{content.length}}/300</div>
     </div>
     
     
     <div class="">
-    <van-uploader accept="image/*" capture="camera" max-count="4" :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
+    <van-uploader accept="image/png, image/jpeg"  max-count="4" :deletable="true" multiple  v-model="fileList" :after-read="afterRead" :before-delete="deleteImage"></van-uploader>
     </div>
     
     

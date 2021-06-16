@@ -27,7 +27,7 @@ function fetch(url, method = "POST", params) {
     token: token.token,
     uid: uid.uid,
     // token: "660a1fe302a3f963c03bd29bc31ecad9",
-    // uid: "10011",    
+    // uid: "10011",
     appversion: '1.0.4',
     appname: 'xinxike',
     systype: 'xcx',

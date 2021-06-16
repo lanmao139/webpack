@@ -1,38 +1,147 @@
+@font-face {
+  font-family: "price";
+  src: url("https://res-qn-1.shuiyin.cn/html/xinxi/numfont.ttf?v=2");
+}
+
+.answer_card {
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+
+.answer_head{
+  display: flex;
+  align-items: center;
+}
+
 .answer_avatar{
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: block;
-  margin: 44px auto 20px auto;
+  margin-right: 10px;
 }
 
 .name{
-  text-align: center;
+  text-align: left;
   color: #000000;
-  font-size: 18px;
-  margin-bottom: 18px;
+  font-size: 16px;
   font-weight: bold;
+  margin-bottom: 7px;
 }
 
-.answer_data{
+.answer_info{
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
-.count{
-  color: #636363;
-  font-size: 14px;
-  margin-right: 24px;
+.answer_point{
+  display: flex;
+  align-items: center;
 }
 
-.brief{
-  color: #3F3F3F;
-  font-size: 16px;
-  text-align: center;
-  margin: 48px auto;
-  padding: 0 20px;
+.star{
+  color: #A8A8A8;
+  font-size: 14px;
+  margin-left: 5px;
 }
+
+.answer_price{
+  margin-left: auto;
+  color: #A8A8A8;
+  font-size: 12px;
+  text-align: center;
+}
+
+.price{
+  color:#3059EA;
+  font-size: 24px;
+  font-family: price;
+}
+
+
+.tag_group{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.tag{
+  color: #6585F6;
+  font-size: 14px;
+  padding: 2px 14px;
+  background-color: #E5EAFF;
+  margin-right: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;  
+}
+
+
+.card_label{
+  font-size: 14px;
+  color: #ACACAC;
+  margin-top: 10px;
+}
+
+
+.brief{
+  color: #7E7E7E;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+.step_box{
+  margin: 20px;
+}
+
+.step{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  border: 1px solid #FFF2C8;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  z-index: 9;
+  position: relative;
+  color: #C4C4C4;
+}
+
+.step_img{
+  width: 48px;
+  height: 48px;
+}
+
+.next_icon{
+  width: 14px;
+  height: 14px;
+}
+
+
+.yellow{
+  font-size: 13px;
+  color: #FFAA00;
+}
+
+.step_desc{
+  background-color: #EBEBEB;
+  font-size: 14px;
+  color: #505050;
+  border-radius: 0 0 8px 8px;
+  padding: 15px 0 5px 0;
+  margin-top: -10px;
+}
+
+.step_li{
+  margin: 5px 10px;
+}
+
 
 
 .arrow_icon{
@@ -65,8 +174,7 @@
   background: #3059EA;
   border-radius: 27px;
   color: #ffffff;  
-  margin: 0px auto;
-  margin-top: 20px;  
+  margin: 20px auto;  
 }
 
 
@@ -88,4 +196,9 @@
   width: 16px;
   height: 16px;
   margin-left: 10px;
+}
+
+
+.btn_disable {
+  background-color: #999;
 }
