@@ -34,6 +34,12 @@ var app = new Vue({
         consult_id: this.consult_id
       }).then((res)=>{
         this.consultDetail = res.data
+        if(res.data.is_give_star == 1) {
+          vant.Toast("你已完成评价")
+          setTimeout(() => {
+            window.location.href = "/mppage/web/detail?consult_id=" + this.consultDetail.consult_id
+          }, 2000);
+        }
       })
     }, 
   

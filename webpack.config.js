@@ -50,6 +50,7 @@ module.exports = {
     "setting": './pages/setting/setting.js',
     "history": './pages/history/history.js',
     "consulting": './pages/consulting/consulting.js',
+    "myposter": './pages/myposter/myposter.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //必须是绝对路径
@@ -198,6 +199,12 @@ module.exports = {
       chunks: ['consulting'],
       minify: false
     }),  
+    new HtmlWebpackPlugin({
+      template: './pages/myposter/myposter.html',
+      filename: './myposter.html', 
+      chunks: ['myposter'],
+      minify: false
+    }),     
     new miniCssExtractPlugin({
       filename: 'css/[name].css', //输出的css文件名，放置在dist目录下
     }),

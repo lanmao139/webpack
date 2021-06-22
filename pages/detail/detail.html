@@ -77,7 +77,7 @@
 
    <div v-if="consultDetail.status == 2">
     <div class="star_title">咨询者给您的评价</div>
-    <van-rate v-model="consultDetail.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+    <van-rate v-model="consultDetail.star" size="16" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
         </van-rate>
     <div class="comment">{{consultDetail.comment}}</div>
   </div>
@@ -98,10 +98,10 @@
     <div class="continue_btn" @click="goContinue">追问咨询</div>
 
     <div v-if="consultDetail.is_give_star == 1">
-      <div>您对答主的评价</div>
-      <van-rate v-model="consultDetail.star" :size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
+      <div class="star_label">您对答主的评价</div>
+      <van-rate v-model="consultDetail.star" :size="16" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
           </van-rate>
-      <div>{{consultDetail.comment}}</div>
+      <div class="comment">{{consultDetail.comment}}</div>
     </div>
 
     <div v-else class="noStar" @click="stars">

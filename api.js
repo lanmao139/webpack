@@ -12,6 +12,18 @@ const domain =
     ? "/request"
     : "https://api.xinxike.net";
 
+
+let _token = 
+process.env.NODE_ENV === "development"
+? {
+  token: "660a1fe302a3f963c03bd29bc31ecad9",
+  uid: "10011",
+}
+:{
+  token: token.token,
+  uid: uid.uid,  
+}
+
 /**
  *
  *
@@ -24,10 +36,7 @@ const domain =
 function fetch(url, method = "POST", params) {
 
   let _data = {
-    token: token.token,
-    uid: uid.uid,
-    // token: "660a1fe302a3f963c03bd29bc31ecad9",
-    // uid: "10011",
+    ..._token,
     appversion: '1.0.4',
     appname: 'xinxike',
     systype: 'xcx',
@@ -259,4 +268,12 @@ export const upload = function(formData) {
   * 正在咨询
   */
    export const myconsultProcessing = (params) => fetch(`${domain}/api/consult/myconsultProcessing`,"POST", params);
+ 
+
+
+
+/**
+  * 我的解锁
+  */
+  export const myorders = (params) => fetch(`${domain}/api/poster/myorders`,"POST", params);
  

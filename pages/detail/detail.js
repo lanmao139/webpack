@@ -46,8 +46,8 @@ var app = new Vue({
         images: that.consultDetail.pic_url,
         startPosition: index,
         closeable: true,
-      });      
-    },    
+      });
+    },
 
     checkAnserImage(index){
       const that = this

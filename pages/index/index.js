@@ -7,7 +7,7 @@ var app = new Vue({
   el: '#app',
   data() {
     return {
-      answer_uid: "10012",
+      answer_uid: "",
       responder:{},
       consult_config:{},
       isMyself: false,
@@ -63,7 +63,11 @@ var app = new Vue({
       if(this.consult_config.consult_status == 1) {
         window.location.href = "/mppage/web/consult?answer_uid=" + id
       } else {
-        vant.Toast("当前用户已关闭咨询")
+        if(this.isMyself){
+          vant.Toast("您已关闭了咨询通道，请在咨询设置中开启")
+        } else {
+          vant.Toast("对方已关闭咨询功能")
+        }
       }
     },
 

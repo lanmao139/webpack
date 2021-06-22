@@ -107,13 +107,11 @@
   color: #BABABA;
   font-size: 14px;
   margin-top: 40px;
-  margin-left: 3px;
 }
 
 .comment{
   color: #6F6F6F;
   font-size: 16px;
-  margin-left: 3px;
 }
 
 
@@ -199,4 +197,17 @@
 
 .arrow_right{
   width: 16px;
+}
+
+
+.star_label{
+  color: #BABABA;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.comment{
+  color: #6F6F6F;
+  font-size: 16px;
+  margin-top: 5px;
 }

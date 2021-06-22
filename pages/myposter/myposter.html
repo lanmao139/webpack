@@ -21,19 +21,11 @@
 <div class="home_head">
   <div class="info_box">
     <img class="home_avatar" :src="consultInfo.avatar_url"></img>
-    <div class="name">{{consultInfo.nickname}} 发起的咨询</div>
+    <div class="name">{{consultInfo.nickname}}</div>
   </div>
-
 </div>
 
-
-<div class="btn_group">
-  <div class="filter_btn" :class="navType==0?'filter_avtive':''" data-navtype="0" @click="setNavType(0)">进行中({{navData.consult_processing}})</div>
-  <div class="filter_btn" :class="navType==1?'filter_avtive':''" data-navtype="1" @click="setNavType(1)">待应答({{navData.consult_pending}})</div>
-  <div class="filter_btn" :class="navType==2?'filter_avtive':''" data-navtype="2" @click="setNavType(2)">已完成({{navData.consult_finish}})</div>
-  <div class="filter_btn" :class="navType==3?'filter_avtive':''" data-navtype="3" @click="setNavType(3)">其他({{navData.consult_other}})</div>
-</div>
-
+<div class="label">我解锁的信息</div>
 
 <van-list
   v-model="loading"
@@ -42,41 +34,24 @@
 >
 
   <div class="consult_list">
-    <div class="consult_card" v-for="item in list" :data-id="item.consult_id"  @click="consultDetail(item.consult_id)">
-      <div class="consult_head">
-        <div class="avatar_box">
-          <img v-if="type==2" :src="item.answer_avatar" class="consult_avatar"> </img>
-          <img v-else :src="item.consult_avatar" class="consult_avatar"> </img>
-
-          <div class="dot" v-if="item.consult_has_news"></div>
+    <div class="card" v-for="item in list" :data-id="item.consult_id"  @click="posterDetail(item.poster_id)">
+      <div class="card_title">
+        <div>{{item.title}}</div>
+      </div>
+      <div class="desc">{{item.abstract_content}}</div>
+      <div class="card_footer">
+        <div class="avatar_group">
+          <img class="avatar" v-for="(avatar, idx) in item.buyer_list" v-if="idx < 3"
+           :style="idx===0?'margin-left:0':''" :src="avatar.avatar_url"></img>
         </div>
+        <div class="card_info">{{item.buyer_count}}人付费·{{item.buyer_score_count}}人打分</div>
+
+        <div class="card_badge" :style="item | shareColor">
+          {{item | badage}}
+        </div>
+      </div>      
 
 
-        <div class="name" v-if="type==2">我向{{item.answer_nickname}} 的咨询</div>
-
-        <div class="name" v-else>来自{{item.consult_nickname}} 的咨询</div>
-      </div>
-
-      <div class="consult_text">
-        {{item.content}}
-      </div>
-
-
-      <div class="consult_info">
-        <div class="consult_status">{{item.left_text}}</div>
-        <div v-if="item.consult_has_news">有消息更新</div>
-      </div>
-
-
-      <block v-if="item.status == 2 && item.is_give_star == 1">
-        <van-divider customStyle="margin: 10px 0"></van-divider>
-
-        <div class="consult_foot">
-          <van-rate :value="item.star" size="20" void-color="#ffd21e" color="#ffd21e" readonly void-icon="star-o">
-            </van-rate>
-            <div class="consult_comment">{{item.comment}}</div>
-        </div>       
-      </block>     
     </div>
   </div>
 
